@@ -24,7 +24,6 @@ userSchema.findById = function (cb) {
 
 const User = mongoose.model('Users', userSchema);
 
-
 exports.findByEmail = (email) => {
     return User.find({email: email});
 };
@@ -75,4 +74,3 @@ exports.removeById = (userId) => {
         });
     });
 };
-

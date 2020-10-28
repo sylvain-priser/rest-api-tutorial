@@ -9,7 +9,6 @@ const options = {
     // all other approaches are now deprecated by MongoDB:
     useNewUrlParser: true,
     useUnifiedTopology: true
-    
 };
 const connectWithRetry = () => {
     console.log('MongoDB connection with retry')
@@ -17,7 +16,7 @@ const connectWithRetry = () => {
         console.log('MongoDB is connected')
     }).catch(err=>{
         console.log('MongoDB connection unsuccessful, retry after 5 seconds. ', ++count);
-        setTimeout(connectWithRetry, 5000)
+        setTimeout(connectWithRetry, 2000)
     })
 };
 
