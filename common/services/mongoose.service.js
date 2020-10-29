@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 let count = 0;
 
+console.log('mongoose.service.js : Step#01');
+
 const options = {
     autoIndex: false, // Don't build indexes
     poolSize: 10, // Maintain up to 10 socket connections
@@ -10,6 +12,7 @@ const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true
 };
+
 const connectWithRetry = () => {
     console.log('MongoDB connection with retry')
     mongoose.connect("mongodb://localhost:27017/rest-tutorial", options).then(()=>{
@@ -20,6 +23,10 @@ const connectWithRetry = () => {
     })
 };
 
+console.log('mongoose.service.js : Step#02');
+
 connectWithRetry();
+
+console.log('mongoose.service.js : Step#03');
 
 exports.mongoose = mongoose;

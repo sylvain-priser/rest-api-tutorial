@@ -9,6 +9,8 @@ const userSchema = new Schema({
     permissionLevel: Number
 });
 
+console.log('users.model.js : Step#01');
+
 userSchema.virtual('id').get(function () {
     return this._id.toHexString();
 });
@@ -74,3 +76,5 @@ exports.removeById = (userId) => {
         });
     });
 };
+
+console.log('users.model.js : Step#02');
