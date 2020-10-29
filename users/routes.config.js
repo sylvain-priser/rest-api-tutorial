@@ -12,14 +12,14 @@ exports.routesConfig = function (app) {
         UsersController.insert
     ]);
     app.get('/users', [
-        ValidationMiddleware.validJWTNeeded,
-        PermissionMiddleware.minimumPermissionLevelRequired(PAID),
+        //ValidationMiddleware.validJWTNeeded,
+        //PermissionMiddleware.minimumPermissionLevelRequired(PAID),
         UsersController.list
     ]);
     app.get('/users/:userId', [
-        ValidationMiddleware.validJWTNeeded,
-        PermissionMiddleware.minimumPermissionLevelRequired(FREE),
-        PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
+        //ValidationMiddleware.validJWTNeeded,
+        //PermissionMiddleware.minimumPermissionLevelRequired(FREE),
+        //PermissionMiddleware.onlySameUserOrAdminCanDoThisAction,
         UsersController.getById
     ]);
     app.patch('/users/:userId', [
