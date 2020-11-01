@@ -1,5 +1,5 @@
 const UserModel = require('../models/users.model');
-const crypto = require('crypto');
+const crypto = require('crypto'); 
 require('log-timestamp');
 
 exports.insert = (req, res) => {
