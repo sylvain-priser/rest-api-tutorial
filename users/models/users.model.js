@@ -1,3 +1,4 @@
+require('log-timestamp');
 const mongoose = require('../../common/services/mongoose.service').mongoose;
 const Schema = mongoose.Schema;
 
@@ -29,6 +30,7 @@ const User = mongoose.model('Users', userSchema);
 exports.findByEmail = (email) => {
     return User.find({email: email});
 };
+
 exports.findById = (id) => {
     return User.findById(id)
         .then((result) => {

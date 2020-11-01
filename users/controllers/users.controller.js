@@ -1,11 +1,13 @@
 const UserModel = require('../models/users.model');
 const crypto = require('crypto');
+require('log-timestamp');
 
 exports.insert = (req, res) => {
     let salt = crypto.randomBytes(16).toString('base64');
     let hash = crypto.createHmac('sha512', salt).update(req.body.password).digest("base64");
     req.body.password = salt + "$" + hash;
     req.body.permissionLevel = 1;
+    console.log('user.controller.insert :: body = ' + req.body);
     UserModel.createUser(req.body)
         .then((result) => {
             res.status(201).send({id: result._id});
@@ -28,6 +30,7 @@ exports.list = (req, res) => {
 };
 
 exports.getById = (req, res) => {
+    console.log('user.controller.getById :: userId = ' + req.params.userId);
     UserModel.findById(req.params.userId)
         .then((result) => {
             res.status(200).send(result);

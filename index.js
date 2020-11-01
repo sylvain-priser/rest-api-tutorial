@@ -1,3 +1,5 @@
+require('log-timestamp');
+
 const config = require('./common/config/env.config.js');
 const express = require('express');
 const app = express();
