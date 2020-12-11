@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const AuthorizationRouter = require('./authorization/routes.config');
-const UsersRouter = require('./users/routes.config');
+const CRG_SIC_Router = require('./crg_sic/routes.config');
 
 console.log('index.js : Step #01');
 
@@ -29,7 +29,7 @@ console.log('index.js : Step #03');
 
 app.use(bodyParser.json());
 AuthorizationRouter.routesConfig(app);
-UsersRouter.routesConfig(app);
+CRG_SIC_Router.routesConfig(app);
 
 app.listen(config.port, function () {
     console.log('app listening at port %s', config.port);

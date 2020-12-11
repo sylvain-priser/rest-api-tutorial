@@ -1,4 +1,4 @@
-const UserModel = require('../models/users.model');
+const IntModel = require('../models/int.model');
 const crypto = require('crypto'); 
 require('log-timestamp');
 
@@ -7,8 +7,8 @@ exports.insert = (req, res) => {
     let hash = crypto.createHmac('sha512', salt).update(req.body.password).digest("base64");
     req.body.password = salt + "$" + hash;
     req.body.permissionLevel = 1;
-    console.log('user.controller.insert :: body = ' + req.body);
-    UserModel.createUser(req.body)
+    console.log('int.controller.insert :: body = ' + req.body);
+    IntModel.createInt(req.body)
         .then((result) => {
             res.status(201).send({id: result._id});
         });
@@ -23,19 +23,21 @@ exports.list = (req, res) => {
             page = Number.isInteger(req.query.page) ? req.query.page : 0;
         }
     }
-    UserModel.list(limit, page)
+    console.log('int.controller.list :: limit = ' + limit + ', page = ' + page);
+    IntModel.listInt(limit, page)
         .then((result) => {
             res.status(200).send(result);
         })
 };
 
 exports.getById = (req, res) => {
-    console.log('user.controller.getById :: userId = ' + req.params.userId);
-    UserModel.findById(req.params.userId)
+    console.log('int.controller.getById :: userId = ' + req.params.Id);
+    IntModel.findById(req.params.Id)
         .then((result) => {
             res.status(200).send(result);
         });
 };
+
 exports.patchById = (req, res) => {
     if (req.body.password) {
         let salt = crypto.randomBytes(16).toString('base64');
@@ -43,16 +45,10 @@ exports.patchById = (req, res) => {
         req.body.password = salt + "$" + hash;
     }
 
-    UserModel.patchUser(req.params.userId, req.body)
+    console.log('int.controller.js : patchById('+req.params.Id+', '+req.body+')');
+    IntModel.patchUser(req.params.Id, req.body)
         .then((result) => {
             res.status(204).send({});
         });
 
-};
-
-exports.removeById = (req, res) => {
-    UserModel.removeById(req.params.userId)
-        .then((result)=>{
-            res.status(204).send({});
-        });
 };

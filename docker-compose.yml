@@ -1,7 +1,7 @@
 version: '3'
 services:
   api:
-    image: sylvain-priser/rest-api-tutorial
+    image: apsynergy/crg-sic-api
     build: .
     networks:
       - backend
@@ -20,7 +20,7 @@ services:
       - "27017:27017"
 
   web-cli:
-    image: sylvain-priser/rest-api-tutorial
+    image: apsynergy/crg-sic-api
     links:
       - mongo
     networks:
